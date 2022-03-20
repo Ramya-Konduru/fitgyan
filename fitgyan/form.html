@@ -11,22 +11,91 @@
 </head>
 
 <style>
-    .form {
+    body {
+        /* background-color: darkviolet; */
+        margin: auto;
+        height: 100vh;
+        width: 100vw;
+        background: linear-gradient(45deg, darkviolet, #9181f2);
         display: flex;
-        flex-direction: row;
+        align-items: center;
         justify-content: center;
+        font-size: 1.3rem;
+        font-family: sans-serif;
+    }
+
+    form .form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    form {
+        background-color: aliceblue;
+        padding: 5.6rem 2.3rem;
+        text-align: center;
+        border-radius: 3%;
+        box-shadow: rgb(48 48 48) 0px 0px 17px;
+    }
+
+    form a {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        margin-top: 4rem;
+        border: 2px;
+        background-image: linear-gradient(to right, #9181f2, #09ff10);
+        border-radius: 30px;
+        text-decoration: none;
+        color: #584ab6;
+        font-weight: bolder;
+    }
+
+    form>a:hover {
+        transform: translateY(-4px);
+    }
+
+    .fgh {
+        padding: 0.9rem 0rem;
+    }
+
+    input {
+        height: 1.4rem;
+        width: 14rem;
+        border-radius: 12px;
+        cursor: text;
+        font-size: 1.2em;
+        padding: 0.3em 0.5em;
+        border-radius: 0.2em;
+        outline: none;
+        border: 1px solid grey;
+    }
+
+    input:focus {
+        border: 2px solid #09ff10;
+    }
+
+    label {
+        padding-right: 3rem;
     }
 </style>
 
 <body>
-    <div class="form">
-        <form action="seen" method="get">
-            <div class="name">Name: <input type="text"></div>
-            <div class="email">E-mail: <input type="email" name="mail" id="mailid"></div>
-            <div class="password">Password: <input type="password" name="pass" id="word"></div>
-            <div class="password">Re-enter Password: <input type="password" name="repass" id="reword"></div>
-        </form>
-    </div>
+    <form action="seen" method="get">
+        <div class="form">
+            <div class="name fgh"><label for="text"> Name: </label><input type="text"></div>
+            <div class="email fgh"><label for="text"> E-mail: </label><input type="email" name="mail" id="mailid"></div>
+            <div class="password fgh"> <label for="text"> Password: </label><input type="password" name="pass"
+                    id="word"></div>
+            <div class="password fgh"> <label for="text"> Re-enter Password: </label><input type="password"
+                    name="repass" id="reword"></div>
+        </div>
+        <a onclick="alert('Are you sure to sign-in with the details?')" class="nav-link" href="form.html">Sign up</a>
+    </form>
+
+
+    <script>
+        let a = document.getElementsByClassName("nav-link");
+    </script>
 </body>
 
 </html>

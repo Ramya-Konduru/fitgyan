@@ -78,7 +78,7 @@ body{
 } */
 
 .carousel-item{
-  height: 100vh;
+  height: 43rem;
   min-height: 300px;
   background-color: #333;
 }

@@ -81,22 +81,39 @@
     label {
         padding-right: 3rem;
     }
+
+    .closed {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 2rem;
+    }
 </style>
 
-<body>
-    <form action="#" method="get">
-        <div class="form">
-            <div class="name fgh"><label for="text"> Name: </label><input type="text" id="name" required></div>
-            <div class="email fgh"><label for="text"> E-mail: </label><input type="email" name="mail" id="email"
-                    required></div>
-            <div class="password fgh"> <label for="text"> Password: </label><input type="password" name="pass" id="word"
-                    required></div>
-            <div class="password fgh"> <label for="text"> Re-enter Password: </label><input type="password"
-                    name="repass" id="reword" required></div>
+<body onload='document.form1.name.focus()'>
+    <a href="index.html">
+        <button type="button" class="close closed" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </a>
+
+    <form action="#" name="form1" method="get">
+        <div class="hello">
+
+            <div class="form">
+                <div class="name fgh"><label for="text"> Name: </label><input type="text" id="name" name="name"
+                        required></div>
+                <div class="email fgh"><label for="text"> E-mail: </label><input type="email" name="mail"
+                        pattern=".+@globex\.com" id="email" required></div>
+                <div class="password fgh"> <label for="text"> Password: </label><input type="password" name="pass"
+                        id="word" required></div>
+                <div class="password fgh"> <label for="text"> Re-enter Password: </label><input type="password"
+                        name="repass" id="reword" required></div>
+            </div>
+            <button type="button" class="signupbtn" data-toggle="modal" data-target="#exampleModalLong"
+                onclick="showVal()">Sign
+                Up</button>
         </div>
-        <button type="button" class="signupbtn" data-toggle="modal" data-target="#exampleModalLong"
-            onclick="showVal()">Sign
-            Up</button>
     </form>
 
 
@@ -128,37 +145,60 @@
 
     <script>
 
-        function showVal() {
+        function showVal(inputText) {
             let name, email, pwd, repwd;
             name = document.getElementById("name").value;
             email = document.getElementById("email").value;
             pwd = document.getElementById("word").value;
-            // repwd = document.getElementById("reword").value;
+            repwd = document.getElementById("reword").value;
 
+            if (name.trim() === "" || email.trim() === "" || pwd.trim() === "" || repwd.trim() === "") {
+                let e1 = document.createElement("div");
+                let modal = document.getElementById("modalInput");
+                let h1 = document.getElementById("exampleModalLongTitle");
+                h1.innerHTML = "Login Unsuccessful!";
+                e1.innerHTML = "Error: Invalid field Values!";
+                modal.innerHTML = "";
+                modal.appendChild(e1);
+            }
 
-            localStorage.setItem("name", name);
-            localStorage.setItem("email", email);
-            localStorage.setItem("word", pwd);
-            // localStorage.setItem("reword", repwd);
+            else if (pwd != repwd) {
+                let e1 = document.createElement("div");
+                let modal = document.getElementById("modalInput");
+                let h1 = document.getElementById("exampleModalLongTitle");
+                h1.innerHTML = "Login Unsuccessful!";
+                e1.innerHTML = "Error: Invalid Password!";
+                modal.innerHTML = "";
+                modal.appendChild(e1);
+                document.form1.repass.focus();
+            }
+            else {
+                localStorage.setItem("name", name);
+                localStorage.setItem("email", email);
+                localStorage.setItem("word", pwd);
+                // localStorage.setItem("reword", repwd);
 
+                let h1 = document.getElementById("exampleModalLongTitle");
+                h1.innerHTML = "Login Successful!";
+                let p1 = document.createElement("div");
+                p1.innerHTML = "Thanks for joining us " + localStorage.getItem("name") + ", Regular updates will be sent on " + localStorage.getItem("email");
 
-            let p1 = document.createElement("div");
-            p1.innerHTML = "Thanks for joining us " + localStorage.getItem("name") + ", Regular updates will be sent on " + localStorage.getItem("email");
+                // let p1 = document.createElement("div");
+                // p1.innerHTML = "Name: " + localStorage.getItem("name");
+                // let p2 = document.createElement("div");
+                // p2.innerHTML = "E-mail: " + localStorage.getItem("email");
+                // let p3 = document.createElement("div");
+                // p3.innerHTML = "Password: " + localStorage.getItem("word");
+                // let p4 = document.createElement("div");
+                // p4.innerHTML = localStorage.getItem("reword");
 
-            // let p1 = document.createElement("div");
-            // p1.innerHTML = "Name: " + localStorage.getItem("name");
-            // let p2 = document.createElement("div");
-            // p2.innerHTML = "E-mail: " + localStorage.getItem("email");
-            // let p3 = document.createElement("div");
-            // p3.innerHTML = "Password: " + localStorage.getItem("word");
-            // let p4 = document.createElement("div");
-            // p4.innerHTML = localStorage.getItem("reword");
-
-            let modal = document.getElementById("modalInput");
-            modal.appendChild(p1);
-            modal.appendChild(p2);
-            modal.appendChild(p3);
-            // modal.appendChild(p4);
+                let modal = document.getElementById("modalInput");
+                modal.innerHTML = "";
+                modal.appendChild(p1);
+                modal.appendChild(p2);
+                modal.appendChild(p3);
+                // modal.appendChild(p4);
+            }
         }
 
 

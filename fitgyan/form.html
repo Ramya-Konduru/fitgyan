@@ -86,15 +86,14 @@
         position: absolute;
         top: 0;
         right: 0;
-        margin: 2rem;
+        margin: 3rem;
+        height: 1.6rem;
     }
 </style>
 
 <body onload='document.form1.name.focus()'>
     <a href="index.html">
-        <button type="button" class="close closed" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <img src="close.svg" alt="." class="closed">
     </a>
 
     <form action="#" name="form1" method="get">
@@ -133,7 +132,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">OK</button>
+                    <button type="submit" id="hc" class="btn btn-primary"
+                        onclick="location.href='index.html'">OK</button>
                 </div>
             </div>
         </div>
@@ -145,7 +145,8 @@
 
     <script>
 
-        function showVal(inputText) {
+
+        function showVal() {
             let name, email, pwd, repwd;
             name = document.getElementById("name").value;
             email = document.getElementById("email").value;
@@ -200,6 +201,16 @@
                 // modal.appendChild(p4);
             }
         }
+        // function helloee() {
+        //     if (h1.innerHTML === "Login Successful!") {
+        //         document.getElementById('hc').onclick = function () {
+        //             location.href = "index.html";
+        //         }
+        //     } else {
+        //         document.getElementById('hc').onclick = function () {
+        //             location.href = "form.html";
+        //         }
+        //     }
 
 
 
